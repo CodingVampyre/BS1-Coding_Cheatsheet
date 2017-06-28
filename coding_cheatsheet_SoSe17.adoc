@@ -45,6 +45,14 @@ a|``write(int fd, const void *buf, size_t count)`` schreibt daten in den Filedes
 
 a|''close(int fd)'' Schließt den Filedeskriptor a|
 
-''int fd'':: Den zu schließenden Filedeskriptor
+``int fd``:: Den zu schließenden Filedeskriptor
+
+a|``select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)`` |Überwacht mehrere Filedeskriptoren, bis einer davon bereit ist, I/O-Operationen entgegen zu nehmen a|
+
+``int nfds``:: Der höchste beschriebene Filedeskriptor + 1
+``fd_set *readfds``:: Enthält Filedeskriptoren, aus denen glesen werden kann
+``fd_set *writefds``:: Überprüft, ob schreibbare Bereiche vorhanden sind
+``fd_set *exceptfds``:: Überprüft die Sockets nach Exceptions
+``struct timeval *timeout``:: Definiert die Zeit bis zum Timeout
 
 |========
