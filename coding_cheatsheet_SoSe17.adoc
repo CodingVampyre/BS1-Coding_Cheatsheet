@@ -76,3 +76,22 @@
 	* ``int shmflg`` Flag, die Bestimmt, ob wir ein neues Segment holen oder erstellen wollen (``IPC_CREAT``) oder auf jeden Fall erstellen wollen (``IPC_EXCL``), etc...
 
 ---
+
+``void *shmat(int shmid, const void *shmaddr, int shmflg);``:: Hängt ein Segment an den Adressraum des aufrufenden Prozesses
+	* ``int shmid`` ID des Shared Memory Segmentes
+	* ``const void *shmaddr`` Adresse zur Einblendung des Segmentes in den Prozessraum, meist ``0``
+	* ``int shmflg`` Flag, meist ``SHM_RND``, kann aber auch andere Funktionalitäten enthalten
+	
+---
+
+``void shmdt(const void *shmaddr);``:: Hängt das Segment wieder ab.
+	* ``const void *shmaddr`` Die Adresse des Segmentes //TODO Validieren
+	
+---
+
+``int shmctl(int shmid, int cmd, struct shmid_ds *buf);``:: Kontrolliert das Shared Memory Segment
+	* ``int shmid`` Das zu bearbeitende Segment
+	* ``int cmd`` Das Kommando
+	** ``IPC_STAT``, ``IPC_SET``, ``IPC_RMID``, ``IPC_INFO``, ``SHM_INFO``, ``SHM_STAT``, ``SHM_LOCK``, ``SHM_UNLOCK``
+	* ``struct shmid_ds *buf`` Pointer auf ``shmid_ds`` Struct.
+	
