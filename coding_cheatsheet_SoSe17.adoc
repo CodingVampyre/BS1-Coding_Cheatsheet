@@ -16,49 +16,39 @@
 	** char sa_data[14];
 	* ``sizeof(server)`` Die größe des Servers
 
-a|``listen(int socket, int backlog);``:: sorgt dafür, dass unsere Sockets Verbindungen Akzeptieren können. a|
+``listen(int socket, int backlog);``:: sorgt dafür, dass unsere Sockets Verbindungen Akzeptieren können.
+	* ``int socket`` Der zu verwendende Socket
+	* ``int backlog`` Maximale Länge der Queue der ausstehenden Verbindungen.
 
-``int socket``:: Der zu verwendende Socket
-``int backlog``:: Maximale Länge der Queue der ausstehenden Verbindungen.
+``accept(int sockfd, struckt sockaddr *addr, socklen_t *addrlen)``:: akzeptiert die eingehenden Verbindungen des Sockets
+	* ``int sockfd`` Der mit ``socket()`` erstellte Socket, muss ``listen()``
+	* ``struct sockaddr *addr`` Enthält die adresse des peer Sockets
+	* ``socklen_t *addrlen`` Größe des Strcts von ``addr`` in Byte
 
-a|``accept(int sockfd, struckt sockaddr *addr, socklen_t *addrlen)``:: akzeptiert die eingehenden Verbindungen des Sockets a|
+``read(int fd, void *buf, size_t count)``:: Liest Daten aus einem Deskriptor aus
+	* ``int fd`` der Verwendete Filedeskriptor aus ``socket()``
+	* ``void *buf`` Der Buffer, in den die Daten geschrieben werden.
+	* ``size_t count`` Größe der Bytes, die ausgelesen werden
 
-``int sockfd``:: Der mit ``socket()`` erstellte Socket, muss ``listen()``
-``struct sockaddr *addr``:: Enthält die adresse des peer Sockets
-``socklen_t *addrlen``:: Größe des Strcts von ``addr`` in Byte
+``write(int fd, const void *buf, size_t count)``:: schreibt daten in den Filedeskriptor
+	* ``int fd`` Der verwendete Filedeskriptor
+	* ``const void *buf`` Der Buffer, der geschrieben werden soll
+	* ``size_t count`` Anzahl der Bytes, die geschrieben werden sollen?
 
-a|``read(int fd, void *buf, size_t count)``:: Liest Daten aus einem Deskriptor aus a| 
+``close(int fd)``:: Schließt den Filedeskriptor
+	* ``int fd`` Den zu schließenden Filedeskriptor
 
-``int fd``:: der Verwendete Filedeskriptor aus ``socket()``
-``void *buf``:: Der Buffer, in den die Daten geschrieben werden.
-``size_t count``:: Größe der Bytes, die ausgelesen werden
+``select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)``::  Überwacht mehrere Filedeskriptoren, bis einer davon bereit ist, I/O-Operationen entgegen zu nehmen
+	* ``int nfds`` Der höchste beschriebene Filedeskriptor + 1
+	* ``fd_set *readfds`` Enthält Filedeskriptoren, aus denen glesen werden kann
+	* ``fd_set *writefds`` Überprüft, ob schreibbare Bereiche vorhanden sind
+	* ``fd_set *exceptfds`` Überprüft die Sockets nach Exceptions
+	* ``struct timeval *timeout`` Definiert die Zeit bis zum Timeout
 
-a|``write(int fd, const void *buf, size_t count)``:: schreibt daten in den Filedeskriptor a|
-
-``int fd``:: Der verwendete Filedeskriptor
-``const void *buf``::  Der Buffer, der geschrieben werden soll
-``size_t count``:: Anzahl der Bytes, die geschrieben werden sollen?
-
-a|``close(int fd)``:: Schließt den Filedeskriptor a|
-
-``int fd``:: Den zu schließenden Filedeskriptor
-
-a|``select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)``::  Überwacht mehrere Filedeskriptoren, bis einer davon bereit ist, I/O-Operationen entgegen zu nehmen a|
-
-``int nfds``:: Der höchste beschriebene Filedeskriptor + 1
-``fd_set *readfds``:: Enthält Filedeskriptoren, aus denen glesen werden kann
-``fd_set *writefds``:: Überprüft, ob schreibbare Bereiche vorhanden sind
-``fd_set *exceptfds``:: Überprüft die Sockets nach Exceptions
-``struct timeval *timeout``:: Definiert die Zeit bis zum Timeout
-
-a|``int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);``:: verbindet mit einem Socket a|
-
-``int sockfd``:: Der zu Verbindende Socket.
-``const struct sockaddr *addr``:: Die Adressdaten des Sockets
-``socklen_t addrlen``:: Länge in Bytes des zu verwendenden Sockets
-
-
-|========
+``int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);``:: verbindet mit einem Socket
+	* ``int sockfd`` Der zu Verbindende Socket.
+	* ``const struct sockaddr *addr`` Die Adressdaten des Sockets
+	* ``socklen_t addrlen`` Länge in Bytes des zu verwendenden Sockets
 
 == Prozesse
 ``int fork()``:: erzeugt einen neuen Prozess
