@@ -63,3 +63,22 @@ a|``int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);`` v
 
 
 |========
+
+== Prozesse
+[options="header", columns="2"]
+|========
+|Befehl/Beschreibung |Parameter
+a|``fork()`` erzeugt einen neuen Prozess a| null
+|========
+
+== Shared Memory
+[options="header", columns="2"]
+|========
+|Befehl/Beschreibung |Parameter
+a|``int shmget(key_t key, size_t size, int shmflg);`` holt/erzeugt ein Shared-memory segment a| 
+
+``key_t key``:: Der assoziierte Schlüssel zum Segment
+``size_t size``:: Größe des Shared-memory Segementes
+``int shmflg``:: Flag, die Bestimmt, ob wir ein neues Segment holen oder erstellen wollen (``IPC_CREAT``) oder auf jeden Fall erstellen wollen (``IPC_EXCL``), etc...
+
+|========
