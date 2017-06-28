@@ -1,0 +1,50 @@
+= Betriebssysteme: Coding Cheatsheet
+:toc:
+
+== Sockets
+
+[options="header", columns="2"]
+|========
+|Befehl/Beschreibung |Parameter
+a| ``socket(int domain, int type, int protocol);`` liefert einen Deskriptor für einen Kommunikationsendpunkt a|
+
+``int domain``:: Die Domain, in der die Kommunikation stattfinden soll
+``int type``:: ``SOCK_STREAM``, ``SOCK_DGRAM`` oder ``SOCK_RAW`` definiert die Semantik der Kommunikation.
+``int protocol``:: Spezifiziert das zu verwendende Protokoll, meist gibt es aber nur eines
+
+a|``bind(sock, (struct sockaddr *) &server, sizeof(server));`` bindet einen Namen an das Socket a| 
+
+``sock``:: Der in ``socket()`` erstellte Socket
+``(struct sockaddr *) &server``:: Die Serverdaten, die wir manuell eingeben, stehen in einem Struct stehen:
+	* sa_family_t sa_family;
+	* char sa_data[14];
+``sizeof(server)``:: Die größe des Servers
+
+a|``listen(int socket, int backlog);`` sorgt dafür, dass unsere Sockets Verbindungen Akzeptieren können. a|
+
+``int socket``:: Der zu verwendende Socket
+``int backlog``:: Maximale Länge der Queue der ausstehenden Verbindungen.
+
+a|``accept(int sockfd, struckt sockaddr *addr, socklen_t *addrlen)`` akzeptiert die eingehenden Verbindungen des Sockets a|
+
+``int sockfd``:: Der mit ``socket()`` erstellte Socket, muss ``listen()``
+``struct sockaddr *addr``:: Enthält die adresse des peer Sockets
+``socklen_t *addrlen``:: Größe des Strcts von ``addr`` in Byte
+
+a|``read(int fd, void *buf, size_t count)`` Liest Daten aus einem Deskriptor aus a| 
+
+``int fd``:: der Verwendete Filedeskriptor aus ``socket()``
+``void *buf``:: Der Buffer, in den die Daten geschrieben werden.
+``size_t count``:: Größe der Bytes, die ausgelesen werden
+
+a|``write(int fd, const void *buf, size_t count)`` schreibt daten in den Filedeskriptor a|
+
+``int fd``:: Der verwendete Filedeskriptor
+``const void *buf``::  Der Buffer, der geschrieben werden soll
+``size_t count``:: Anzahl der Bytes, die geschrieben werden sollen?
+
+a|''close(int fd)'' Schließt den Filedeskriptor a|
+
+''int fd'':: Den zu schließenden Filedeskriptor
+
+|========
