@@ -6,13 +6,13 @@
 [options="header", columns="2"]
 |========
 |Befehl/Beschreibung |Parameter
-a| ``socket(int domain, int type, int protocol);`` liefert einen Deskriptor für einen Kommunikationsendpunkt a|
+a| ``socket(int domain, int type, int protocol);``:: liefert einen Deskriptor für einen Kommunikationsendpunkt a|
 
 ``int domain``:: Die Domain, in der die Kommunikation stattfinden soll
 ``int type``:: ``SOCK_STREAM``, ``SOCK_DGRAM`` oder ``SOCK_RAW`` definiert die Semantik der Kommunikation.
 ``int protocol``:: Spezifiziert das zu verwendende Protokoll, meist gibt es aber nur eines
 
-a|``bind(sock, (struct sockaddr *) &server, sizeof(server));`` bindet einen Namen an das Socket a| 
+a|``bind(sock, (struct sockaddr *) &server, sizeof(server));``:: bindet einen Namen an das Socket a| 
 
 ``sock``:: Der in ``socket()`` erstellte Socket
 ``(struct sockaddr *) &server``:: Die Serverdaten, die wir manuell eingeben, stehen in einem Struct stehen:
