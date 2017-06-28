@@ -8,6 +8,8 @@
 	* ``int type``: ``SOCK_STREAM``, ``SOCK_DGRAM`` oder ``SOCK_RAW`` definiert die Semantik der Kommunikation.
 	* ``int protocol`` Spezifiziert das zu verwendende Protokoll, meist gibt es aber nur eines
 
+---
+
 ``bind(sock, (struct sockaddr *) &server, sizeof(server));``:: bindet einen Namen an das Socket
 
 	* ``sock`` Der in ``socket()`` erstellte Socket
