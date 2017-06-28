@@ -20,34 +20,34 @@ a|``bind(sock, (struct sockaddr *) &server, sizeof(server));``:: bindet einen Na
 	* char sa_data[14];
 ``sizeof(server)``:: Die größe des Servers
 
-a|``listen(int socket, int backlog);`` sorgt dafür, dass unsere Sockets Verbindungen Akzeptieren können. a|
+a|``listen(int socket, int backlog);``:: sorgt dafür, dass unsere Sockets Verbindungen Akzeptieren können. a|
 
 ``int socket``:: Der zu verwendende Socket
 ``int backlog``:: Maximale Länge der Queue der ausstehenden Verbindungen.
 
-a|``accept(int sockfd, struckt sockaddr *addr, socklen_t *addrlen)`` akzeptiert die eingehenden Verbindungen des Sockets a|
+a|``accept(int sockfd, struckt sockaddr *addr, socklen_t *addrlen)``:: akzeptiert die eingehenden Verbindungen des Sockets a|
 
 ``int sockfd``:: Der mit ``socket()`` erstellte Socket, muss ``listen()``
 ``struct sockaddr *addr``:: Enthält die adresse des peer Sockets
 ``socklen_t *addrlen``:: Größe des Strcts von ``addr`` in Byte
 
-a|``read(int fd, void *buf, size_t count)`` Liest Daten aus einem Deskriptor aus a| 
+a|``read(int fd, void *buf, size_t count)``:: Liest Daten aus einem Deskriptor aus a| 
 
 ``int fd``:: der Verwendete Filedeskriptor aus ``socket()``
 ``void *buf``:: Der Buffer, in den die Daten geschrieben werden.
 ``size_t count``:: Größe der Bytes, die ausgelesen werden
 
-a|``write(int fd, const void *buf, size_t count)`` schreibt daten in den Filedeskriptor a|
+a|``write(int fd, const void *buf, size_t count)``:: schreibt daten in den Filedeskriptor a|
 
 ``int fd``:: Der verwendete Filedeskriptor
 ``const void *buf``::  Der Buffer, der geschrieben werden soll
 ``size_t count``:: Anzahl der Bytes, die geschrieben werden sollen?
 
-a|``close(int fd)`` Schließt den Filedeskriptor a|
+a|``close(int fd)``:: Schließt den Filedeskriptor a|
 
 ``int fd``:: Den zu schließenden Filedeskriptor
 
-a|``select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)``  Überwacht mehrere Filedeskriptoren, bis einer davon bereit ist, I/O-Operationen entgegen zu nehmen a|
+a|``select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)``::  Überwacht mehrere Filedeskriptoren, bis einer davon bereit ist, I/O-Operationen entgegen zu nehmen a|
 
 ``int nfds``:: Der höchste beschriebene Filedeskriptor + 1
 ``fd_set *readfds``:: Enthält Filedeskriptoren, aus denen glesen werden kann
@@ -55,7 +55,7 @@ a|``select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struc
 ``fd_set *exceptfds``:: Überprüft die Sockets nach Exceptions
 ``struct timeval *timeout``:: Definiert die Zeit bis zum Timeout
 
-a|``int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);`` verbindet mit einem Socket a|
+a|``int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);``:: verbindet mit einem Socket a|
 
 ``int sockfd``:: Der zu Verbindende Socket.
 ``const struct sockaddr *addr``:: Die Adressdaten des Sockets
@@ -68,14 +68,14 @@ a|``int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);`` v
 [options="header", columns="2"]
 |========
 |Befehl/Beschreibung |Parameter
-a|``fork()`` erzeugt einen neuen Prozess a| null
+a|``int fork()``:: erzeugt einen neuen Prozess a| null
 |========
 
 == Shared Memory
 [options="header", columns="2"]
 |========
 |Befehl/Beschreibung |Parameter
-a|``int shmget(key_t key, size_t size, int shmflg);`` holt/erzeugt ein Shared-memory segment a| 
+a|``int shmget(key_t key, size_t size, int shmflg);``:: holt/erzeugt ein Shared-memory segment a| 
 
 ``key_t key``:: Der assoziierte Schlüssel zum Segment
 ``size_t size``:: Größe des Shared-memory Segementes
