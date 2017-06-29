@@ -95,3 +95,52 @@
 	** ``IPC_STAT``, ``IPC_SET``, ``IPC_RMID``, ``IPC_INFO``, ``SHM_INFO``, ``SHM_STAT``, ``SHM_LOCK``, ``SHM_UNLOCK``
 	* ``struct shmid_ds *buf`` Pointer auf ``shmid_ds`` Struct.
 	
+== Shared Memory
+
+``int semget(key_t key, int nsems, int semflg)``:: Auf Semaphorengruppe zugreiffen oder eine neue Gruppe anlegen
+	* ``key_t key`` Schlüssel der Gruppe, ``IPC_PRIVATE`` lässt den Unix-Kern den Schlüssel selbst erzeugen
+	* ``int nsems`` Anzahl der Semaphoren in der Gruppe
+	* ``int semflg`` Parameter der Gruppe, z.B. ``IPC_CREAT|xxxx``, wobei x die Zugriffsrechte kontrolliert.
+	
+---
+
+``int semop(int semid, struct sembuf *sops, size_t nsops);``:: Führt eine Semaphorenoperation aus
+	* ``int semid`` Schlüssel der Semaphorengruppe aus ``semget``
+	* ``struct sembuf *sops`` Verweis auf Struct ``sembuf``, welches die Operationen definiert
+		. ``short short sem_num`` Nummer des Semaphors in der Gruppe
+		. ``short sem_op`` Bei >0 wird die Op zu einer UP-Operation, bei <0 zu einer DOWN-Operation
+		. ``short sem_flg`` Enthält Flags zu Steuerung, optional.
+		
+---
+
+``int semctl(int semid, int semnum, int cmd, ...);``:: Fürt eine Semaphorenoperation aus
+	* ``int semid`` Key der Semaphorengruppe
+	* ``int semnum`` Anzahl der Semaphore in der Gruppe
+	* ``int cmd`` das auszuführende Kommando (``SETALL``, ``GETALL``, etc...)
+		IPC_STAT::: Holt das semid_ds einer Semaphore
+		IPC_SET::: Ändert Parameter aus ``sem_perm``
+		IPC_RMID::: Entfernt ein Semaphorenset aus dem System
+		GETVAL::: Liefert den Wert einer Semaphore
+		SETVAL::: Setzt den Wert einer Semaphore
+		GETPID::: Liefert den letzten Prozess, der eine semop durchgeführt hat
+		GETNCNT::: Liefert die Anzahl der Prozesse die auf die Überschreitung einer Semaphore über einen bestimmten Wert warten.
+		GETZCNT::: Gleiches wie oben, nur soll die Semaphore 0 werden.
+		GETALL::: Liefert die Werte aller Semaphoren einer Gruppe
+		SETALL::: Setzt alle Semaphoren einer Gruppe auf den gleichen Wert. 
+	* ``...`` Optionales ``union semun arg``, welches bei manchen Operationen benötigt wird.
+		. ``int val`` Wert für SETVAL
+		. ``struct semid_ds *buf`` Buffer für IPC_STAT und IPC_SET
+		. ``u_short *array`` Array für GETALL und SETALL
+
+== Pipes und Programme
+
+``pipe(...)``:: Ermöglicht unidirektionalen Prozessaustausch 
+	* ``...`` Enthält ein Array mit einem Ein- und einem Ausgang der Pipe
+	
+---
+	
+``execlp(...)``:: Führt ein anderes Programm oder eine Datei aus.
+	* ``...`` Enthält Programm mit sämmtlichen Parametern, wobei der erste und der zweite Parameter der Programmname selbst sein müssen.
+	
+== Nachrichtenwarteschlangen
+TODO
