@@ -95,7 +95,7 @@
 	** ``IPC_STAT``, ``IPC_SET``, ``IPC_RMID``, ``IPC_INFO``, ``SHM_INFO``, ``SHM_STAT``, ``SHM_LOCK``, ``SHM_UNLOCK``
 	* ``struct shmid_ds *buf`` Pointer auf ``shmid_ds`` Struct.
 	
-== Shared Memory
+== Semaphoren
 
 ``int semget(key_t key, int nsems, int semflg)``:: Auf Semaphorengruppe zugreiffen oder eine neue Gruppe anlegen
 	* ``key_t key`` Schlüssel der Gruppe, ``IPC_PRIVATE`` lässt den Unix-Kern den Schlüssel selbst erzeugen
