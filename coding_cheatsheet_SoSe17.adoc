@@ -143,4 +143,18 @@
 	* ``...`` Enthält Programm mit sämmtlichen Parametern, wobei der erste und der zweite Parameter der Programmname selbst sein müssen.
 	
 == Nachrichtenwarteschlangen
-TODO
+``int msgget(key_t key, int msgflg)``:: Legt eine nachrichtenwarteschlange an
+	* ``key_t key`` Schlüssel der Nachrichtenwarteschlange
+	* ``intmsgflg`` ``IPC_CREAT|0664`` legt eine neue Schlange mit ``rw-r--r--`` Rechten
+	
+``int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)``
+	* ``int msqid`` Schlüssel der Warteschlange
+	* ``const void *msgp`` Typ und Inhalt der Warteschlange
+	* ``size_t msgsz`` Größe der Daten
+	* ``int msgflg`` Wird ausgeführt, wenn die Nachricht nicht gesendet werden kann.
+	
+``int msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)``
+	* ``int msqid`` Schlüssel der Warteschlange
+	* ``void *msgp`` Typ und Aktuelle Daten, Rückmeldung
+	* ``size_t msgsz`` Größe des Datenbereichs
+	* ``int msgflg`` IPC_NOWAIT, wenn es keine passende Nachricht gibt
