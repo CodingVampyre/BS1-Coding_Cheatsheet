@@ -95,7 +95,7 @@
 	** ``IPC_STAT``, ``IPC_SET``, ``IPC_RMID``, ``IPC_INFO``, ``SHM_INFO``, ``SHM_STAT``, ``SHM_LOCK``, ``SHM_UNLOCK``
 	* ``struct shmid_ds *buf`` Pointer auf ``shmid_ds`` Struct.
 	
-== Shared Memory
+== Semaphoren
 
 ``int semget(key_t key, int nsems, int semflg)``:: Auf Semaphorengruppe zugreiffen oder eine neue Gruppe anlegen
 	* ``key_t key`` Schlüssel der Gruppe, ``IPC_PRIVATE`` lässt den Unix-Kern den Schlüssel selbst erzeugen
@@ -147,13 +147,13 @@
 	* ``key_t key`` Schlüssel der Nachrichtenwarteschlange
 	* ``intmsgflg`` ``IPC_CREAT|0664`` legt eine neue Schlange mit ``rw-r--r--`` Rechten
 	
-``int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)``
+``int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)``:: sendet eine Nachricht
 	* ``int msqid`` Schlüssel der Warteschlange
 	* ``const void *msgp`` Typ und Inhalt der Warteschlange
 	* ``size_t msgsz`` Größe der Daten
 	* ``int msgflg`` Wird ausgeführt, wenn die Nachricht nicht gesendet werden kann.
 	
-``int msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)``
+``int msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)``:: Empfängt eine Nachricht
 	* ``int msqid`` Schlüssel der Warteschlange
 	* ``void *msgp`` Typ und Aktuelle Daten, Rückmeldung
 	* ``size_t msgsz`` Größe des Datenbereichs
